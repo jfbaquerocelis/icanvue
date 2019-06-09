@@ -7,7 +7,7 @@ let app = new Vue({
     errorMessage: '',
     domain: '',
     items: null,
-    history: []
+    history: null
   },
   methods: {
     searchInfo: function () {
@@ -26,6 +26,14 @@ let app = new Vue({
         this.error = true
         this.errorMessage = 'Please, enter the domain for search the info'
       }
+    },
+    showHistory: function () {
+      axios.get(`http://localhost:3000/servers`).then(response => {
+        this.history = response.data
+      }).catch(err => {
+        this.error = true
+        this.errorMessage = err.message
+      })
     }
   }
 })
