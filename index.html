@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Info Servers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+</head>
+<body>
+  <div id="app" class="container-fluid">
+    <header>
+      <h1>Welcome</h1>
+    </header>
+    <p>Here you can find the info of servers about domain. Please submit the domain that you'll want search:</p>
+    <b-alert v-model="error" variant="danger" dismissible>
+      {{ errorMessage }}
+    </b-alert>
+    <div class="row">
+      <b-form-input class="col-sm-4 offset-sm-1" v-model="domain" placeholder="Enter your domain"></b-form-input>
+      <b-button class="col-sm-2" variant="outline-primary" v-on:click="searchInfo">Search</b-button>
+    </div>
+
+    <!-- Info here -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-7">
+          <b-card bg-variant="light" header="Info" class="text-center">
+            <b-card-text v-for="(value, key) in items" :key="value.host">
+              <span>{{key}}:</span> <span style="font-weight: 300;">{{value}}</span>
+            </b-card-text>
+          </b-card>
+        </div>
+        <div class="col-sm-5">
+          <b-card bg-variant="light" header="History" class="text-center">
+            <b-card-text v-for="h in history">
+              <span style="font-weight: 300;">{{h.search}} - {{h.dateAt}}</span>
+            </b-card-text>
+          </b-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
