@@ -1,2 +1,2 @@
-# icanvue
-I can view through Vue.js
+# I Can Vue
+I can view through Vue.js :smile:
